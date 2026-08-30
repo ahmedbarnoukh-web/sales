@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة مبيعات Mera_Ksa ✨</title>
+    <style>
+        :root {
+            --primary: #d63384;
+            --primary-light: #f8d7da;
+            --secondary: #6f42c1;
+            --success: #198754;
+            --success-light: #d1e7dd;
+            --highlight: #fff0f6;
+            --bg: #fff5f8;
+            --card-bg: #ffffff;
+            --text: #495057;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 12px;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .brand-logo {
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            display: inline-block;
+            filter: drop-shadow(0 2px 5px rgba(214, 51, 132, 0.2));
+        }
+
+        .dancing-girl {
+            display: inline-block;
+            animation: dance 1s infinite alternate ease-in-out;
+            transform-origin: bottom center;
+            font-size: 1.2rem;
+        }
+
+        @keyframes dance {
+            0% { transform: rotate(-12deg) translateY(0); }
+            50% { transform: rotate(12deg) translateY(-4px); }
+            100% { transform: rotate(-12deg) translateY(0); }
+        }
+
+        header h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.9rem;
+            font-weight: 800;
+        }
+
+        header p {
+            color: var(--secondary);
+            margin-top: 5px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* زر الإهداء الرومانسي */
+        .gift-btn-container {
+            text-align: center;
+            margin-top: 12px;
+            margin-bottom: 15px;
+        }
+
+        .btn-gift {
+            background: linear-gradient(135deg, #ff4081, #d63384);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(214, 51, 132, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gift:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(214, 51, 132, 0.4);
+        }
+
+        /* نافذة رسالة الإهداء (Popup Modal) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .modal-card {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            border: 3px solid #ff4081;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+            animation: popup 0.4s ease-out;
+        }
+
+        @keyframes popup {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-card h3 {
+            color: #d63384;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .modal-card p {
+            color: #495057;
+            font-size: 1.08rem;
+            line-height: 1.7;
+            margin: 15px 0 20px 0;
+            font-weight: 600;
+        }
+
+        .btn-close-modal {
+            background: #6f42c1;
+            color: white;
+            border: none;
+            padding: 9px 25px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            border: 1px solid #f1aeb5;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 6px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--secondary);
+            white-space: nowrap;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #f5c2c7;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(214, 51, 132, 0.3);
+        }
+
+        .form-group.highlight-field input {
+            background-color: var(--highlight);
+            border: 2px solid var(--primary);
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group.highlight-field label {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-add:hover { opacity: 0.9; }
+
+        .table-tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 9px 12px;
+            border: 1px solid #f5c2c7;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+            outline: none;
+        }
+
+        .btn-print {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow-x: auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 10px 8px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #f8d7da;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .btn-status {
+            background-color: #ffc107;
+            color: #000;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .btn-status.collected {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .stats-section { margin-top: 20px; }
+
+        .stats-title {
+            color: var(--secondary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            text-align: right;
+            border-right: 4px solid var(--primary);
+            padding-right: 8px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--primary);
+            text-align: center;
+        }
+
+        .stat-card.green-card {
+            background-color: var(--success-light);
+            border-top: 4px solid var(--success);
+        }
+
+        .stat-card.green-card h4 { color: #0f5132; }
+        .stat-card.green-card div { color: var(--success); }
+
+        .stat-card h4 {
+            margin: 0 0 8px 0;
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+
+        .stat-card div {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-subtext {
+            font-size: 0.8rem;
+            color: #146c43;
+            margin-top: 3px;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .btn-add-container { grid-column: 1 / -1; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media print {
+            .form-card, .table-tools, .gift-btn-container, .btn-delete, .btn-status, header p {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="brand-logo">👗✨🛍️</div>
+        <h1>Mera_Ksa Fashion & Perfume</h1>
+        <p>نظام إدراج الطلبات وتتبع الأرباح والتحصيل</p>
+        
+        <!-- زر الإهداء -->
+        <div class="gift-btn-container">
+            <button class="btn-gift" onclick="openGiftModal()">💌 فضلاً اضغطي هنا 💖</button>
+        </div>
+    </header>
+
+    <!-- نافذة الإهداء Pop-up -->
+    <div class="modal-overlay" id="giftModal">
+        <div class="modal-card">
+            <h3>❤️ إهداء خاص جداً ❤️</h3>
+            <p>
+                إلى زوجتي الغالية وحبيبة قلبي.. <br>
+                أتمنى لكِ التوفيق والنجاح الدائم، وعايز تعرفى انى دايما  هكون سندك ودعمك وفي ظهركِ خطوة بخطوة في كل نجاحاتك.. بحبك ✨🌹
+            </p>
+            <button class="btn-close-modal" onclick="closeGiftModal()"> شكراً يا حبيبي 💖</button>
+        </div>
+    </div>
+
+    <!-- نموذج الإدخال -->
+    <div class="form-card">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>التاريخ</label>
+                <input type="date" id="orderDate">
+            </div>
+            <div class="form-group">
+                <label>اسم العميلة</label>
+                <input type="text" id="clientName" placeholder="أدخلي الاسم">
+            </div>
+            <div class="form-group">
+                <label>الجوال (اختياري)</label>
+                <input type="text" id="clientPhone" placeholder="05xxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>العنوان (اختياري)</label>
+                <input type="text" id="clientAddress" placeholder="المدينة / الحي">
+            </div>
+            
+            <div class="form-group highlight-field">
+                <label>💎 مجموع سعر الطلب (ر.س)</label>
+                <input type="number" id="orderTotal" placeholder="0" step="any">
+            </div>
+            
+            <div class="form-group">
+                <label>نسبة الشحن (%)</label>
+                <input type="number" id="shippingRate" value="10" step="any">
+            </div>
+            <div class="form-group">
+                <label>نسبة المكسب (%)</label>
+                <input type="number" id="profitRate" value="25" step="any">
+            </div>
+            <div class="form-group">
+                <label>سعر الصرف (للمصري)</label>
+                <input type="number" id="exchangeRate" value="13" step="any">
+            </div>
+            <div class="form-group btn-add-container">
+                <button class="btn-add" type="button" id="submitBtn">إضافة الطلب ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- البحث والطباعة -->
+    <div class="table-tools">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 بحث باسم العميلة..." onkeyup="filterOrders()">
+        <button class="btn-print" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+    </div>
+
+    <!-- جدول عرض الطلبات -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>التاريخ</th>
+                    <th>اسم العميلة</th>
+                    <th>الجوال</th>
+                    <th>العنوان</th>
+                    <th>التكلفة بالشحن (ر.س)</th>
+                    <th>المطلوب تحصيله من العميلة (ج.م)</th>
+                    <th>صافي المكسب (ج.م) <span class="dancing-girl">💃🏻</span></th>
+                    <th>حالة التحصيل</th>
+                    <th>إجراء</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTable"></tbody>
+        </table>
+    </div>
+
+    <!-- خلاصة الإحصائيات والأرقام -->
+    <div class="stats-section">
+        <h3 class="stats-title">📊 الخلاصة المالية والإجماليات</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>إجمالي الأوردرات شاملة الشحن (ر.س)</h4>
+                <div id="stat-cost-shipping">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>إجمالي المطلوب تحصيله (ج.م)</h4>
+                <div id="stat-sales-egp">0</div>
+            </div>
+            <div class="stat-card green-card">
+                <h4>إجمالي صافي المكسب ✨ <span class="dancing-girl">💃🏻</span></h4>
+                <div id="stat-profit-egp-main">0 ج.م</div>
+                <div class="stat-subtext" id="stat-profit-sar-sub">(0 ر.س)</div>
+            </div>
+            <div class="stat-card green-card">
+                <h4>إجمالي ما تم تحصيله فعلياً (ج.م) ✅</h4>
+                <div id="stat-collected-egp">0 ج.م</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function formatNumber(num) {
+        if (isNaN(num)) return "0";
+        return Number.isInteger(num) ? num.toLocaleString('en-US') : num.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    }
+
+    function openGiftModal() {
+        document.getElementById('giftModal').style.display = 'flex';
+    }
+
+    function closeGiftModal() {
+        document.getElementById('giftModal').style.display = 'none';
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        var today = new Date().toISOString().substring(0, 10);
+        document.getElementById('orderDate').value = today;
+        renderData();
+    });
+
+    function getStoredOrders() {
+        try {
+            var data = localStorage.getItem('mera_orders_list_v9');
+            return data ? JSON.parse(data) : [];
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function saveOrders(list) {
+        try {
+            localStorage.setItem('mera_orders_list_v9', JSON.stringify(list));
+        } catch(e) {}
+    }
+
+    document.getElementById('submitBtn').onclick = function() {
+        var dateVal = document.getElementById('orderDate').value;
+        var nameVal = document.getElementById('clientName').value.trim();
+        var phoneVal = document.getElementById('clientPhone').value.trim() || '-';
+        var addressVal = document.getElementById('clientAddress').value.trim() || '-';
+        var costVal = parseFloat(document.getElementById('orderTotal').value) || 0;
+        var shipRateVal = parseFloat(document.getElementById('shippingRate').value) || 10;
+        var profitRateVal = parseFloat(document.getElementById('profitRate').value) || 25;
+        var rateVal = parseFloat(document.getElementById('exchangeRate').value) || 13;
+
+        if (nameVal === "" || costVal <= 0) {
+            alert("يرجى إدخال اسم العميلة ومجموع سعر الطلب بشكل صحيح!");
+            return;
+        }
+
+        var shippingAmount = costVal * (shipRateVal / 100);
+        var costWithShipping = costVal + shippingAmount;
+        
+        var profit25SAR = costVal * (profitRateVal / 100);
+        var profit25EGP = profit25SAR * rateVal;
+        
+        var grandSAR = costWithShipping + profit25SAR;
+        var grandEGP = grandSAR * rateVal;
+
+        var newItem = {
+            id: new Date().getTime(),
+            date: dateVal,
+            name: nameVal,
+            phone: phoneVal,
+            address: addressVal,
+            costWithShipping: costWithShipping,
+            profit25SAR: profit25SAR,
+            profit25EGP: profit25EGP,
+            grandTotalSAR: grandSAR,
+            grandTotalEGP: grandEGP,
+            isCollected: false
+        };
+
+        var currentList = getStoredOrders();
+        currentList.push(newItem);
+        saveOrders(currentList);
+
+        document.getElementById('clientName').value = '';
+        document.getElementById('clientPhone').value = '';
+        document.getElementById('clientAddress').value = '';
+        document.getElementById('orderTotal').value = '';
+
+        renderData();
+    };
+
+    function toggleCollect(id) {
+        var currentList = getStoredOrders();
+        for (var i = 0; i < currentList.length; i++) {
+            if (currentList[i].id === id) {
+                currentList[i].isCollected = !currentList[i].isCollected;
+                break;
+            }
+        }
+        saveOrders(currentList);
+        renderData();
+    }
+
+    function removeItem(id) {
+        if (confirm("هل أنتِ متأكدة من حذف هذا الطلب؟")) {
+            var currentList = getStoredOrders();
+            var newList = currentList.filter(function(item) {
+                return item.id !== id;
+            });
+            saveOrders(newList);
+            renderData();
+        }
+    }
+
+    function filterOrders() {
+        var input = document.getElementById('searchInput').value.toLowerCase();
+        var rows = document.querySelectorAll('#ordersTable tr');
+
+        rows.forEach(function(row) {
+            var text = row.innerText.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    }
+
+    function renderData() {
+        var list = getStoredOrders();
+        var tbody = document.getElementById('ordersTable');
+        tbody.innerHTML = '';
+
+        var totalCostWithShipping = 0;
+        var totalProfitSAR = 0;
+        var totalProfitEGP = 0;
+        var totalSalesEGP = 0;
+        var totalCollectedEGP = 0;
+
+        for (var i = 0; i < list.length; i++) {
+            var item = list[i];
+            totalCostWithShipping += item.costWithShipping;
+            totalProfitSAR += item.profit25SAR;
+            totalProfitEGP += item.profit25EGP;
+            totalSalesEGP += item.grandTotalEGP;
+
+            if (item.isCollected) {
+                totalCollectedEGP += item.grandTotalEGP;
+            }
+
+            var statusBtnHtml = item.isCollected ? 
+                '<button class="btn-status collected" onclick="toggleCollect(' + item.id + ')">تم التحصيل ✅</button>' : 
+                '<button class="btn-status" onclick="toggleCollect(' + item.id + ')">تحصيل ⏳</button>';
+
+            var tr = document.createElement('tr');
+            tr.innerHTML = 
+                '<td>' + item.date + '</td>' +
+                '<td><strong>' + item.name + '</strong></td>' +
+                '<td>' + item.phone + '</td>' +
+                '<td>' + item.address + '</td>' +
+                '<td>' + formatNumber(item.costWithShipping) + '</td>' +
+                '<td style="color: #6f42c1; font-weight: bold;">' + formatNumber(item.grandTotalEGP) + ' ج.م</td>' +
+                '<td style="color: green; font-weight: bold;">' + formatNumber(item.profit25EGP) + ' ج.م <span class="dancing-girl">💃🏻</span></td>' +
+                '<td>' + statusBtnHtml + '</td>' +
+                '<td><button class="btn-delete" onclick="removeItem(' + item.id + ')">حذف</button></td>';
+            tbody.appendChild(tr);
+        }
+
+        document.getElementById('stat-cost-shipping').innerText = formatNumber(totalCostWithShipping);
+        document.getElementById('stat-profit-egp-main').innerText = formatNumber(totalProfitEGP) + ' ج.م';
+        document.getElementById('stat-profit-sar-sub').innerText = '(' + formatNumber(totalProfitSAR) + ' ر.س)';
+        document.getElementById('stat-sales-egp').innerText = formatNumber(totalSalesEGP);
+        document.getElementById('stat-collected-egp').innerText = formatNumber(totalCollectedEGP) + ' ج.م';
+    }
+</script>
+
+</body>
+</html>
