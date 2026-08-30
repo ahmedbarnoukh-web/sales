@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>إدارة مبيعات Mera_Ksa ✨</title>
     <style>
         :root {
@@ -17,14 +17,17 @@
             --text: #495057;
         }
 
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Tahoma, Geneva, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            padding: 12px;
+            padding: 10px;
         }
 
         .container {
@@ -38,7 +41,7 @@
         }
 
         .brand-logo {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             margin-bottom: 5px;
             display: inline-block;
             filter: drop-shadow(0 2px 5px rgba(214, 51, 132, 0.2));
@@ -48,7 +51,7 @@
             display: inline-block;
             animation: dance 1s infinite alternate ease-in-out;
             transform-origin: bottom center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         @keyframes dance {
@@ -60,82 +63,77 @@
         header h1 {
             color: var(--primary);
             margin: 0;
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             font-weight: 800;
         }
 
         header p {
             color: var(--secondary);
-            margin-top: 5px;
-            font-size: 0.95rem;
+            margin-top: 4px;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
-        /* زر الإهداء الرومانسي */
         .gift-btn-container {
             text-align: center;
-            margin-top: 12px;
-            margin-bottom: 15px;
+            margin-top: 10px;
+            margin-bottom: 12px;
         }
 
         .btn-gift {
             background: linear-gradient(135deg, #ff4081, #d63384);
             color: white;
             border: none;
-            padding: 10px 22px;
+            padding: 10px 20px;
             border-radius: 25px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(214, 51, 132, 0.3);
             transition: all 0.3s ease;
+            width: 100%;
+            max-width: 280px;
         }
 
-        .btn-gift:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(214, 51, 132, 0.4);
-        }
-
-        /* نافذة رسالة الإهداء (Popup Modal) */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 15px;
+            backdrop-filter: blur(3px);
         }
 
         .modal-card {
             background: #fff;
-            padding: 30px 25px;
+            padding: 25px 20px;
             border-radius: 20px;
-            max-width: 450px;
+            max-width: 400px;
             width: 100%;
             text-align: center;
             border: 3px solid #ff4081;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            position: relative;
-            animation: popup 0.4s ease-out;
+            animation: popup 0.3s ease-out;
         }
 
         @keyframes popup {
-            from { transform: scale(0.7); opacity: 0; }
+            from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
         .modal-card h3 {
             color: #d63384;
             margin-top: 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
 
         .modal-card p {
             color: #495057;
-            font-size: 1.08rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
             margin: 15px 0 20px 0;
             font-weight: 600;
         }
@@ -144,26 +142,27 @@
             background: #6f42c1;
             color: white;
             border: none;
-            padding: 9px 25px;
+            padding: 10px 25px;
             border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             font-size: 0.9rem;
+            width: 100%;
         }
 
         .form-card {
             background: var(--card-bg);
-            padding: 18px;
+            padding: 15px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid #f1aeb5;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
             align-items: end;
         }
 
@@ -173,11 +172,10 @@
         }
 
         .form-group label {
-            margin-bottom: 6px;
-            font-size: 0.82rem;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
             font-weight: bold;
             color: var(--secondary);
-            white-space: nowrap;
         }
 
         .form-group input {
@@ -185,7 +183,7 @@
             border: 1px solid #f5c2c7;
             border-radius: 8px;
             outline: none;
-            font-size: 0.9rem;
+            font-size: 16px; /* منع التكبير تلقائياً في شاشات iOS */
             width: 100%;
             background-color: #fff;
         }
@@ -204,95 +202,89 @@
 
         .form-group.highlight-field label {
             color: var(--primary);
-            font-size: 0.85rem;
         }
 
         .btn-add {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 11px;
+            padding: 12px;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .btn-add:hover { opacity: 0.9; }
-
         .table-tools {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
             gap: 10px;
-            flex-wrap: wrap;
+            margin-bottom: 12px;
+            flex-direction: column;
         }
 
         .search-box {
-            padding: 9px 12px;
+            padding: 10px 12px;
             border: 1px solid #f5c2c7;
             border-radius: 8px;
-            flex: 1;
-            min-width: 200px;
+            width: 100%;
             outline: none;
+            font-size: 16px;
         }
 
         .btn-print {
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 9px 15px;
+            padding: 10px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            width: 100%;
         }
 
+        /* تنسيق جدول الموبايل الذكي (التحويل لكروت على الموبايل) */
         .table-container {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow-x: auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
-            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 850px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         th {
             background-color: var(--primary-light);
             color: var(--primary);
-            padding: 10px 8px;
-            font-size: 0.8rem;
+            padding: 10px 6px;
+            font-size: 0.75rem;
             text-align: center;
         }
 
         td {
-            padding: 10px 8px;
+            padding: 10px 6px;
             border-bottom: 1px solid #f8d7da;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .btn-status {
             background-color: #ffc107;
             color: #000;
             border: none;
-            padding: 6px 10px;
+            padding: 7px 10px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            width: 100%;
         }
 
         .btn-status.collected {
@@ -304,18 +296,19 @@
             background: #dc3545;
             color: white;
             border: none;
-            padding: 6px 10px;
+            padding: 7px 10px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            width: 100%;
         }
 
-        .stats-section { margin-top: 20px; }
+        .stats-section { margin-top: 15px; }
 
         .stats-title {
             color: var(--secondary);
-            margin-bottom: 12px;
-            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-size: 1rem;
             text-align: right;
             border-right: 4px solid var(--primary);
             padding-right: 8px;
@@ -323,50 +316,110 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
         }
 
         .stat-card {
             background: var(--card-bg);
-            padding: 14px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-            border-top: 4px solid var(--primary);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border-top: 3px solid var(--primary);
             text-align: center;
         }
 
         .stat-card.green-card {
             background-color: var(--success-light);
-            border-top: 4px solid var(--success);
+            border-top: 3px solid var(--success);
         }
 
         .stat-card.green-card h4 { color: #0f5132; }
         .stat-card.green-card div { color: var(--success); }
 
         .stat-card h4 {
-            margin: 0 0 8px 0;
+            margin: 0 0 5px 0;
             color: var(--secondary);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
 
         .stat-card div {
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: bold;
             color: var(--primary);
         }
 
         .stat-subtext {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #146c43;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 8px; }
-            .form-grid { grid-template-columns: 1fr 1fr; }
-            .btn-add-container { grid-column: 1 / -1; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
+        /* تحويل الجدول لنظام الكروت في الموبايل */
+        @media (max-width: 768px) {
+            .table-container table, 
+            .table-container thead, 
+            .table-container tbody, 
+            .table-container th, 
+            .table-container td, 
+            .table-container tr { 
+                display: block; 
+            }
+
+            .table-container thead {
+                display: none; /* إخفاء الهيدر العادي على الموبايل */
+            }
+
+            .table-container tr {
+                background: var(--card-bg);
+                border: 1px solid #f8d7da;
+                border-radius: 12px;
+                margin-bottom: 12px;
+                padding: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            }
+
+            .table-container td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 4px;
+                border-bottom: 1px dashed #f8d7da;
+                text-align: right;
+                font-size: 0.88rem;
+            }
+
+            .table-container td:last-child {
+                border-bottom: none;
+            }
+
+            /* إضافة التسمية التلقائية لكل خانة */
+            .table-container td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: var(--secondary);
+                font-size: 0.8rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .full-width-mobile {
+                grid-column: span 2;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .table-tools {
+                flex-direction: row;
+            }
+            .btn-print {
+                width: auto;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media print {
@@ -384,7 +437,6 @@
         <h1>Mera_Ksa Fashion & Perfume</h1>
         <p>نظام إدراج الطلبات وتتبع الأرباح والتحصيل</p>
         
-        <!-- زر الإهداء -->
         <div class="gift-btn-container">
             <button class="btn-gift" onclick="openGiftModal()">💌 فضلاً اضغطي هنا 💖</button>
         </div>
@@ -396,7 +448,7 @@
             <h3>❤️ إهداء خاص جداً ❤️</h3>
             <p>
                 إلى زوجتي الغالية وحبيبة قلبي.. <br>
-                أتمنى لكِ التوفيق والنجاح الدائم، وعايز تعرفى انى دايما  هكون سندك ودعمك وفي ظهركِ خطوة بخطوة في كل نجاحاتك.. بحبك ✨🌹
+                أتمنى لكِ التوفيق والنجاح الدائم، وعايز تعرفى انى دايما هكون سندك ودعمك وفي ظهركِ خطوة بخطوة في كل نجاحاتك.. بحبك ✨🌹
             </p>
             <button class="btn-close-modal" onclick="closeGiftModal()"> شكراً يا حبيبي 💖</button>
         </div>
@@ -415,14 +467,14 @@
             </div>
             <div class="form-group">
                 <label>الجوال (اختياري)</label>
-                <input type="text" id="clientPhone" placeholder="05xxxxxxx">
+                <input type="tel" id="clientPhone" placeholder="05xxxxxxx">
             </div>
             <div class="form-group">
                 <label>العنوان (اختياري)</label>
                 <input type="text" id="clientAddress" placeholder="المدينة / الحي">
             </div>
             
-            <div class="form-group highlight-field">
+            <div class="form-group highlight-field full-width-mobile">
                 <label>💎 مجموع سعر الطلب (ر.س)</label>
                 <input type="number" id="orderTotal" placeholder="0" step="any">
             </div>
@@ -435,11 +487,11 @@
                 <label>نسبة المكسب (%)</label>
                 <input type="number" id="profitRate" value="25" step="any">
             </div>
-            <div class="form-group">
+            <div class="form-group full-width-mobile">
                 <label>سعر الصرف (للمصري)</label>
                 <input type="number" id="exchangeRate" value="13" step="any">
             </div>
-            <div class="form-group btn-add-container">
+            <div class="form-group full-width-mobile">
                 <button class="btn-add" type="button" id="submitBtn">إضافة الطلب ✨</button>
             </div>
         </div>
@@ -461,8 +513,8 @@
                     <th>الجوال</th>
                     <th>العنوان</th>
                     <th>التكلفة بالشحن (ر.س)</th>
-                    <th>المطلوب تحصيله من العميلة (ج.م)</th>
-                    <th>صافي المكسب (ج.م) <span class="dancing-girl">💃🏻</span></th>
+                    <th>المطلوب تحصيله (ج.م)</th>
+                    <th>صافي المكسب (ج.م)</th>
                     <th>حالة التحصيل</th>
                     <th>إجراء</th>
                 </tr>
@@ -476,20 +528,20 @@
         <h3 class="stats-title">📊 الخلاصة المالية والإجماليات</h3>
         <div class="stats-grid">
             <div class="stat-card">
-                <h4>إجمالي الأوردرات شاملة الشحن (ر.س)</h4>
+                <h4>إجمالي الأوردرات بالشحن (ر.س)</h4>
                 <div id="stat-cost-shipping">0</div>
             </div>
             <div class="stat-card">
-                <h4>إجمالي المطلوب تحصيله (ج.م)</h4>
+                <h4>المطلوب تحصيله (ج.م)</h4>
                 <div id="stat-sales-egp">0</div>
             </div>
             <div class="stat-card green-card">
-                <h4>إجمالي صافي المكسب ✨ <span class="dancing-girl">💃🏻</span></h4>
+                <h4>صافي المكسب ✨ <span class="dancing-girl">💃🏻</span></h4>
                 <div id="stat-profit-egp-main">0 ج.م</div>
                 <div class="stat-subtext" id="stat-profit-sar-sub">(0 ر.س)</div>
             </div>
             <div class="stat-card green-card">
-                <h4>إجمالي ما تم تحصيله فعلياً (ج.م) ✅</h4>
+                <h4>تم تحصيله فعلياً (ج.م) ✅</h4>
                 <div id="stat-collected-egp">0 ج.م</div>
             </div>
         </div>
@@ -642,15 +694,15 @@
 
             var tr = document.createElement('tr');
             tr.innerHTML = 
-                '<td>' + item.date + '</td>' +
-                '<td><strong>' + item.name + '</strong></td>' +
-                '<td>' + item.phone + '</td>' +
-                '<td>' + item.address + '</td>' +
-                '<td>' + formatNumber(item.costWithShipping) + '</td>' +
-                '<td style="color: #6f42c1; font-weight: bold;">' + formatNumber(item.grandTotalEGP) + ' ج.م</td>' +
-                '<td style="color: green; font-weight: bold;">' + formatNumber(item.profit25EGP) + ' ج.م <span class="dancing-girl">💃🏻</span></td>' +
-                '<td>' + statusBtnHtml + '</td>' +
-                '<td><button class="btn-delete" onclick="removeItem(' + item.id + ')">حذف</button></td>';
+                '<td data-label="التاريخ">' + item.date + '</td>' +
+                '<td data-label="اسم العميلة"><strong>' + item.name + '</strong></td>' +
+                '<td data-label="الجوال">' + item.phone + '</td>' +
+                '<td data-label="العنوان">' + item.address + '</td>' +
+                '<td data-label="التكلفة بالشحن (ر.س)">' + formatNumber(item.costWithShipping) + '</td>' +
+                '<td data-label="المطلوب تحصيله (ج.م)" style="color: #6f42c1; font-weight: bold;">' + formatNumber(item.grandTotalEGP) + ' ج.م</td>' +
+                '<td data-label="صافي المكسب (ج.م)" style="color: green; font-weight: bold;">' + formatNumber(item.profit25EGP) + ' ج.م <span class="dancing-girl">💃🏻</span></td>' +
+                '<td data-label="حالة التحصيل">' + statusBtnHtml + '</td>' +
+                '<td data-label="إجراء"><button class="btn-delete" onclick="removeItem(' + item.id + ')">حذف</button></td>';
             tbody.appendChild(tr);
         }
 
